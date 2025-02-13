@@ -51,10 +51,18 @@ async function main(): Promise<void> {
       const registered = await sosoValue.registerAccount(email, password.encodedPassword);
       if(registered){
 
-        // Tambahkan delay acak antara 5-15 menit sebelum membuat akun berikutnya
+        // Tambahkan delay acak antara 60 - 300 detik sebelum membuat akun berikutnya
         if (count > 1 && i < count - 1) {
-          let waitTime = Math.floor(Math.random() * (300 - 60 + 1) + 60) * 1000; // 60-300 detik
+          let waitTime = Math.floor(Math.random() * (300 - 60 + 1) + 60) * 1000; // Konversi ke milidetik
+          console.log(chalk.blue(`Waiting ${waitTime / 1000} seconds before creating the next account...`));
           await new Promise(resolve => setTimeout(resolve, waitTime));
+        }
+
+
+        // Tambahkan delay acak antara 5-15 menit sebelum membuat akun berikutnya
+        //if (count > 1 && i < count - 1) {
+          //let waitTime = Math.floor(Math.random() * (300 - 60 + 1) + 60) * 1000; // 60-300 detik
+          //await new Promise(resolve => setTimeout(resolve, waitTime));
 
         }
                 successful++;
