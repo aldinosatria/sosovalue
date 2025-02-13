@@ -53,9 +53,9 @@ async function main(): Promise<void> {
 
         // Tambahkan delay acak antara 60 - 300 detik sebelum membuat akun berikutnya
         if (count > 1 && i < count - 1) {
-          let waitTime = Math.floor(Math.random() * (300 - 60 + 1) + 60) * 1000; // Konversi ke milidetik
-          console.log(chalk.blue(`Waiting ${waitTime / 1000} seconds before creating the next account...`));
-          await new Promise(resolve => setTimeout(resolve, waitTime));
+          let waitTime = Math.floor(Math.random() * (300 - 60 + 1) + 60); // Hitung dalam detik
+          console.log(chalk.blue(`Waiting ${waitTime} seconds before creating the next account...`));
+          await new Promise(resolve => setTimeout(resolve, waitTime * 1000)); // Konversi ke milidetik di sini
         }
 
 
