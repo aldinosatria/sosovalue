@@ -50,20 +50,15 @@ async function main(): Promise<void> {
       const password = generatePassword() 
       const registered = await sosoValue.registerAccount(email, password.encodedPassword);
       if(registered){
-
         // Tambahkan delay acak antara 60 - 300 detik sebelum membuat akun berikutnya
         if (count > 1 && i < count - 1) {
-          let waitTime = Math.floor(Math.random() * (300 - 60 + 1) + 60); // Hitung dalam detik
-          console.log(chalk.blue(`Waiting ${waitTime} seconds before creating the next account...`));
-          await new Promise(resolve => setTimeout(resolve, waitTime * 1000)); // Konversi ke milidetik di sini
-        }
-
-
-        // Tambahkan delay acak antara 5-15 menit sebelum membuat akun berikutnya
-        //if (count > 1 && i < count - 1) {
-          //let waitTime = Math.floor(Math.random() * (300 - 60 + 1) + 60) * 1000; // 60-300 detik
-          //await new Promise(resolve => setTimeout(resolve, waitTime));
-
+          
+          // Menghitung waktu tunggu acak antara 60 hingga 300 detik (1 hingga 5 menit)
+          let waitTime = Math.floor(Math.random() * (300 - 60 + 1) + 60);
+          console.log(`Waiting ${waitTime} seconds before creating the next account...`);
+          
+          // Tunggu selama waktu yang dihitung dalam detik
+          await new Promise(resolve => setTimeout(resolve, waitTime * 1000));  // Mengonversi ke milidetik
         }
                 successful++;
         sosoValueaccount.write(`Email Address : ${email}\n`);
